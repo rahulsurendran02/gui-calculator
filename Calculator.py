@@ -20,10 +20,19 @@ def buttonClear():
     input_value.set("")
 
 def buttonEqual():
-    global operator
-    result = str(eval(operator))
+    global operator, just_calculated
+    if operator == "":
+        return
+    try:
+        result = str(eval(operator))
+    except Exception:
+        input_value.set("Error")
+        operator = ""
+        just_calculated = False
+        return
     input_value.set(result)
-    operator = ""
+    operator = result
+    just_calculated = True
 
 main = Tk()
 main.title("Calculator")
