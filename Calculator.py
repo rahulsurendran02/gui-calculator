@@ -2,14 +2,21 @@
 
 from tkinter import *
 
+just_calculated = False
+
 def buttonClick(number):
-    global operator
+    global operator, just_calculated
+    # To start new calculation
+    if just_calculated and str(number).isdigit():
+        operator = ""
+    just_calculated = False
     operator = operator + str(number)
     input_value.set(operator)
 
 def buttonClear():
-    global operator
+    global operator, just_calculated
     operator = ""
+    just_calculated = False
     input_value.set("")
 
 def buttonEqual():
